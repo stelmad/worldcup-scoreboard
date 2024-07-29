@@ -12,3 +12,6 @@
    same total score will be returned ordered by the most recently started match in the
    scoreboard.
 
+## Assumptions
+- One team can play one game at a time.
+- A unique match ID is returned once a new match is started.
