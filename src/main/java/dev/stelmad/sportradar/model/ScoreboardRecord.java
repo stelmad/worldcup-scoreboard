@@ -4,11 +4,9 @@ import lombok.Data;
 
 @Data
 public class ScoreboardRecord {
-    private String id;
-
-    private String homeTeamName;
+    private final String homeTeamName;
     private int homeTeamScore;
 
-    private String awayTeamName;
+    private final String awayTeamName;
     private int awayTeamScore;
 }

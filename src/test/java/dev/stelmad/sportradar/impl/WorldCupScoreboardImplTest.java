@@ -3,9 +3,7 @@ package dev.stelmad.sportradar.impl;
 import dev.stelmad.sportradar.Scoreboard;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class WorldCupScoreboardImplTest {
 
@@ -13,11 +11,11 @@ class WorldCupScoreboardImplTest {
     void startMatchTestWithUniqueRecords() {
         Scoreboard scoreboard = new WorldCupScoreboardImpl();
         assertAll(
-            () -> assertNotNull(scoreboard.startMatch("Mexico", "Canada")),
-            () -> assertNotNull(scoreboard.startMatch("Spain", "Brazil")),
-            () -> assertNotNull(scoreboard.startMatch("Germany", "France")),
-            () -> assertNotNull(scoreboard.startMatch("Uruguay", "Italy")),
-            () -> assertNotNull(scoreboard.startMatch("Argentina", "Australia"))
+            () -> assertEquals("MEXICOvsCANADA", scoreboard.startMatch("Mexico", "Canada")),
+            () -> assertEquals("SPAINvsBRAZIL", scoreboard.startMatch("Spain", "Brazil")),
+            () -> assertEquals("GERMANYvsFRANCE", scoreboard.startMatch("Germany", "France")),
+            () -> assertEquals("URUGUAYvsITALY", scoreboard.startMatch("Uruguay", "Italy")),
+            () -> assertEquals("ARGENTINAvsAUSTRALIA", scoreboard.startMatch("Argentina", "Australia"))
         );
     }
 
@@ -25,8 +23,8 @@ class WorldCupScoreboardImplTest {
     void startMatchTestWithDuplicates() {
         Scoreboard scoreboard = new WorldCupScoreboardImpl();
         assertAll(
-            () -> assertNotNull(scoreboard.startMatch("Mexico", "Canada")),
-            () -> assertNotNull(scoreboard.startMatch("Spain", "Brazil")),
+            () -> assertEquals("MEXICOvsCANADA", scoreboard.startMatch("Mexico", "Canada")),
+            () -> assertEquals("SPAINvsBRAZIL", scoreboard.startMatch("Spain", "Brazil")),
             () -> assertThrows(IllegalArgumentException.class,
                 () -> scoreboard.startMatch("Mexico", "Canada"),
                 () -> scoreboard.startMatch("Spain", "Brazil"))

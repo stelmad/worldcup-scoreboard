@@ -14,4 +14,5 @@
 
 ## Assumptions
 - One team can play one game at a time.
-- A unique match ID is returned once a new match is started.
+- Each match is going to be assigned with an ID value in the format: "HOMETEAMvsAWAYTEAM".
+- A match ID is returned once a new match is started.
