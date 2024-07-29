@@ -25,9 +25,21 @@ class WorldCupScoreboardImplTest {
         assertAll(
             () -> assertEquals("MEXICOvsCANADA", scoreboard.startMatch("Mexico", "Canada")),
             () -> assertEquals("SPAINvsBRAZIL", scoreboard.startMatch("Spain", "Brazil")),
-            () -> assertThrows(IllegalArgumentException.class,
-                () -> scoreboard.startMatch("Mexico", "Canada"),
-                () -> scoreboard.startMatch("Spain", "Brazil"))
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch("Mexico", "Canada")),
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch("Spain", "Brazil"))
+        );
+    }
+
+    @Test
+    void startMatchTestWithInvalidArgs() {
+        Scoreboard scoreboard = new WorldCupScoreboardImpl();
+        assertAll(
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch(null, null)),
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch(null, "Mexico")),
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch("Spain", null)),
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch("Spain", "")),
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch("", "Mexico")),
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch("Mexico", "Mexico"))
         );
     }
 }
