@@ -1,6 +1,7 @@
 package dev.stelmad.sportradar.impl;
 
 import dev.stelmad.sportradar.Scoreboard;
+import dev.stelmad.sportradar.model.ScoreboardRecord;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,8 +49,15 @@ class WorldCupScoreboardImplTest {
         Scoreboard scoreboard = new WorldCupScoreboardImpl();
         scoreboard.startMatch("Mexico", "Canada");
         assertAll(
-            () -> assertNotNull(scoreboard.finishMatch("MEXICOvsCANADA")),
-            () -> assertNull(scoreboard.finishMatch("SPAINvsBRAZIL"))
+            () -> assertNull(scoreboard.finishMatch("noExistingMatchID")),
+            () -> {
+                ScoreboardRecord record = scoreboard.finishMatch("MEXICOvsCANADA");
+                assertNotNull(record);
+                assertEquals("MEXICO", record.getHomeTeamName());
+                assertEquals("CANADA", record.getAwayTeamName());
+                assertEquals(0, record.getHomeTeamScore());
+                assertEquals(0, record.getAwayTeamScore());
+            }
         );
     }
 

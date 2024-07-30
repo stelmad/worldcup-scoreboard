@@ -53,6 +53,16 @@ public class WorldCupScoreboardImpl implements Scoreboard {
 
     @Override
     public ScoreboardRecord finishMatch(String matchId) {
-        throw new UnsupportedOperationException();
+        if (StringUtils.isEmpty(matchId)) {
+            throw new IllegalArgumentException("The method argument can't be empty.");
+        }
+
+        if (this.scoreboard.containsKey(matchId)) {
+            final ScoreboardRecord record = this.scoreboard.remove(matchId);
+            this.playingTeams.remove(record.getHomeTeamName());
+            this.playingTeams.remove(record.getAwayTeamName());
+            return record;
+        }
+        return null;
     }
 }
