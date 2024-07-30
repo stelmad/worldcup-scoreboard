@@ -4,6 +4,8 @@ import dev.stelmad.sportradar.Scoreboard;
 import dev.stelmad.sportradar.SummaryProvider;
 import dev.stelmad.sportradar.model.ScoreboardRecord;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,6 +19,12 @@ public class TotalScoreSummaryProviderImpl implements SummaryProvider {
 
     @Override
     public List<ScoreboardRecord> getSummary() {
-        throw new UnsupportedOperationException();
+        List<ScoreboardRecord> summary = new ArrayList<>(this.scoreboard.getRecordList());
+        summary.sort(
+            Comparator.comparingInt(ScoreboardRecord::getTotalScore)
+                      .thenComparing(summary::indexOf)
+                      .reversed()
+        );
+        return summary;
     }
 }
