@@ -19,3 +19,18 @@
 - A match ID should be provided to finish the match.
 - A match ID should be provided to update the match.
 - Negative score values are considered to be invalid for update operations.
+
+## Local build and installation
+1. Clone the repository
+2. Build and install into your local Maven repository `mvn clean install`
+3. Add as a dependency into your project 
+```xml
+<dependency>
+   <groupId>dev.stelmad.sportradar</groupId>
+   <artifactId>football-scoreboard-library</artifactId>
+   <version>1.0.0-SNAPSHOT</version>
+</dependency>
+```
+
+## How to use
+Refer to `dev.stelmad.sportradar.WorldCupScoreboardIT` to get more details on usage.
