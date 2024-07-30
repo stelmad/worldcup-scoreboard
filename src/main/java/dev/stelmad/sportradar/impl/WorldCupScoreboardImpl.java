@@ -4,7 +4,12 @@ import dev.stelmad.sportradar.Scoreboard;
 import dev.stelmad.sportradar.model.ScoreboardRecord;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class WorldCupScoreboardImpl implements Scoreboard {
 
@@ -99,8 +104,13 @@ public class WorldCupScoreboardImpl implements Scoreboard {
         return false;
     }
 
+    /**
+     * Retrieves a list of all match records from the scoreboard.
+     *
+     * @return a list of ScoreboardRecord objects representing all matches
+     */
     @Override
     public List<ScoreboardRecord> getRecordList() {
-        throw new UnsupportedOperationException();
+        return new ArrayList<>(this.scoreboard.values());
     }
 }
