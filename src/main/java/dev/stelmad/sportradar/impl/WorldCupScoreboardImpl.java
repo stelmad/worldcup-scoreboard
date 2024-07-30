@@ -4,10 +4,7 @@ import dev.stelmad.sportradar.Scoreboard;
 import dev.stelmad.sportradar.model.ScoreboardRecord;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class WorldCupScoreboardImpl implements Scoreboard {
 
@@ -100,5 +97,10 @@ public class WorldCupScoreboardImpl implements Scoreboard {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<ScoreboardRecord> getRecordList() {
+        throw new UnsupportedOperationException();
     }
 }

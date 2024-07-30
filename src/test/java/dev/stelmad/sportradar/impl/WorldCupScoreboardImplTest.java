@@ -4,6 +4,8 @@ import dev.stelmad.sportradar.Scoreboard;
 import dev.stelmad.sportradar.model.ScoreboardRecord;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class WorldCupScoreboardImplTest {
@@ -90,5 +92,43 @@ class WorldCupScoreboardImplTest {
         );
     }
 
+    @Test
+    void getRecordListTest() {
+        Scoreboard scoreboard = new WorldCupScoreboardImpl();
+        scoreboard.startMatch("Mexico", "Canada");
+        scoreboard.startMatch("Germany", "France");
 
+        List<ScoreboardRecord> recordList = scoreboard.getRecordList();
+        assertAll(
+            () -> assertNotNull(recordList),
+            () -> assertEquals(2, recordList.size()),
+            () -> {
+                ScoreboardRecord record = recordList.get(0);
+                assertNotNull(record);
+                assertEquals("MEXICO", record.getHomeTeamName());
+                assertEquals("CANADA", record.getAwayTeamName());
+                assertEquals(0, record.getHomeTeamScore());
+                assertEquals(0, record.getAwayTeamScore());
+
+            },
+            () -> {
+                ScoreboardRecord record = recordList.get(1);
+                assertNotNull(record);
+                assertEquals("GERMANY", record.getHomeTeamName());
+                assertEquals("FRANCE", record.getAwayTeamName());
+                assertEquals(0, record.getHomeTeamScore());
+                assertEquals(0, record.getAwayTeamScore());
+            }
+        );
+    }
+
+    @Test
+    void getRecordListTestEmptyScoreboard() {
+        Scoreboard scoreboard = new WorldCupScoreboardImpl();
+        List<ScoreboardRecord> recordList = scoreboard.getRecordList();
+        assertAll(
+            () -> assertNotNull(recordList),
+            () -> assertTrue(recordList.isEmpty())
+        );
+    }
 }
