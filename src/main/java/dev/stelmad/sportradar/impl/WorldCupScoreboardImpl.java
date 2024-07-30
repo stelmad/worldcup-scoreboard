@@ -73,4 +73,9 @@ public class WorldCupScoreboardImpl implements Scoreboard {
         }
         return null;
     }
+
+    @Override
+    public boolean updateMatch(String matchId, int homeTeamScore, int awayTeamScore) {
+        throw new UnsupportedOperationException();
+    }
 }

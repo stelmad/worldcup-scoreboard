@@ -16,3 +16,6 @@
 - One team can play one game at a time.
 - Each match is going to be assigned with an ID value in the format: "HOMETEAMvsAWAYTEAM".
 - A match ID is returned once a new match is started.
+- A match ID should be provided to finish the match.
+- A match ID should be provided to update the match.
+- Negative score values are considered to be invalid for update operations.

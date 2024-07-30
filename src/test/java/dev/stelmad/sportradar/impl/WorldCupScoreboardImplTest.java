@@ -69,4 +69,26 @@ class WorldCupScoreboardImplTest {
             () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.finishMatch(""))
         );
     }
+
+    @Test
+    void updateMatchTest() {
+        Scoreboard scoreboard = new WorldCupScoreboardImpl();
+        scoreboard.startMatch("Mexico", "Canada");
+        assertAll(
+            () -> assertFalse(scoreboard.updateMatch("noExistingMatchID", 2, 2)),
+            () -> assertTrue(scoreboard.updateMatch("MEXICOvsCANADA", 2, 2))
+        );
+    }
+
+    @Test
+    void updateMatchTestWithInvalidArgs() {
+        Scoreboard scoreboard = new WorldCupScoreboardImpl();
+        assertAll(
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.updateMatch(null, 0, 0)),
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.updateMatch("MEXICOvsCANADA", -1, 2)),
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.updateMatch("MEXICOvsCANADA", 4, -5))
+        );
+    }
+
+
 }
