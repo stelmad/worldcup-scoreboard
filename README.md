@@ -33,4 +33,4 @@
 ```
 
 ## How to use
-Refer to `dev.stelmad.sportradar.WorldCupScoreboardIT` to get more details on usage.
+Refer to [dev.stelmad.sportradar.WorldCupScoreboardIT](https://github.com/stelmad/sportradar-exercise/blob/main/src/test/java/dev/stelmad/sportradar/WorldCupScoreboardIT.java) to get more details on usage.
