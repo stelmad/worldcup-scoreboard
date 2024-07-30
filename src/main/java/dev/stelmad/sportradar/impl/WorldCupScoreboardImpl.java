@@ -2,6 +2,7 @@ package dev.stelmad.sportradar.impl;
 
 import dev.stelmad.sportradar.Scoreboard;
 import dev.stelmad.sportradar.model.ScoreboardRecord;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -17,6 +18,14 @@ public class WorldCupScoreboardImpl implements Scoreboard {
 
     @Override
     public String startMatch(String homeTeamName, String awayTeamName) {
+        if (StringUtils.isEmpty(homeTeamName) || StringUtils.isEmpty(awayTeamName)) {
+            throw new IllegalArgumentException("The method arguments can't be empty.");
+        }
+
+        if (StringUtils.equals(homeTeamName, awayTeamName)) {
+            throw new IllegalArgumentException("The arguments can't be equal.");
+        }
+
         final String homeTeam = homeTeamName.toUpperCase();
         final String awayTeam = awayTeamName.toUpperCase();
         if (this.playingTeams.contains(homeTeam) || this.playingTeams.contains(awayTeam)) {
