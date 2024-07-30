@@ -76,6 +76,20 @@ public class WorldCupScoreboardImpl implements Scoreboard {
 
     @Override
     public boolean updateMatch(String matchId, int homeTeamScore, int awayTeamScore) {
-        throw new UnsupportedOperationException();
+        if (homeTeamScore < 0 || awayTeamScore < 0) {
+            throw new IllegalArgumentException("Score values can't be negative.");
+        }
+
+        if (StringUtils.isEmpty(matchId)) {
+            throw new IllegalArgumentException("The matchId argument can't be empty.");
+        }
+
+        if (this.scoreboard.containsKey(matchId)) {
+            final ScoreboardRecord record = this.scoreboard.get(matchId);
+            record.setHomeTeamScore(homeTeamScore);
+            record.setAwayTeamScore(awayTeamScore);
+            return true;
+        }
+        return false;
     }
 }
