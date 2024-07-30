@@ -51,6 +51,14 @@ public class WorldCupScoreboardImpl implements Scoreboard {
         return matchId;
     }
 
+    /**
+     * Finishes a match and removes it from the scoreboard.
+     * Also removes the teams from the list of playing teams.
+     *
+     * @param matchId the ID of the match to finish
+     * @return the record of the finished match, or null if the match ID does not exist
+     * @throws IllegalArgumentException if the match ID is empty
+     */
     @Override
     public ScoreboardRecord finishMatch(String matchId) {
         if (StringUtils.isEmpty(matchId)) {
