@@ -50,4 +50,9 @@ public class WorldCupScoreboardImpl implements Scoreboard {
         this.playingTeams.add(awayTeam);
         return matchId;
     }
+
+    @Override
+    public ScoreboardRecord finishMatch(String matchId) {
+        throw new UnsupportedOperationException();
+    }
 }

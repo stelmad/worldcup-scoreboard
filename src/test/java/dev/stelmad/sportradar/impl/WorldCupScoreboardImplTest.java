@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WorldCupScoreboardImplTest {
 
     @Test
-    void startMatchTestWithUniqueRecords() {
+    void startMatchTest() {
         Scoreboard scoreboard = new WorldCupScoreboardImpl();
         assertAll(
             () -> assertEquals("MEXICOvsCANADA", scoreboard.startMatch("Mexico", "Canada")),
@@ -40,6 +40,25 @@ class WorldCupScoreboardImplTest {
             () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch("Spain", "")),
             () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch("", "Mexico")),
             () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.startMatch("Mexico", "Mexico"))
+        );
+    }
+
+    @Test
+    void finishMatchTest() {
+        Scoreboard scoreboard = new WorldCupScoreboardImpl();
+        scoreboard.startMatch("Mexico", "Canada");
+        assertAll(
+            () -> assertNotNull(scoreboard.finishMatch("MEXICOvsCANADA")),
+            () -> assertNull(scoreboard.finishMatch("SPAINvsBRAZIL"))
+        );
+    }
+
+    @Test
+    void finishMatchTestWithInvalidArgs() {
+        Scoreboard scoreboard = new WorldCupScoreboardImpl();
+        assertAll(
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.finishMatch(null)),
+            () -> assertThrows(IllegalArgumentException.class, () -> scoreboard.finishMatch(""))
         );
     }
 }
