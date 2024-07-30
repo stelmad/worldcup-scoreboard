@@ -74,6 +74,15 @@ public class WorldCupScoreboardImpl implements Scoreboard {
         return null;
     }
 
+    /**
+     * Updates the score of an ongoing match.
+     *
+     * @param matchId       the ID of the match to update
+     * @param homeTeamScore the new score for the home team
+     * @param awayTeamScore the new score for the away team
+     * @return true if the match was found and updated, false otherwise
+     * @throws IllegalArgumentException if the match ID is empty or if any score is negative
+     */
     @Override
     public boolean updateMatch(String matchId, int homeTeamScore, int awayTeamScore) {
         if (homeTeamScore < 0 || awayTeamScore < 0) {
